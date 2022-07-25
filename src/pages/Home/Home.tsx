@@ -7,12 +7,12 @@ import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 
 interface Props {
     name : string;
-    setName: string ;
-    fetchQuestions : string;
+    setName:  (val: string) => void;
+    fetchQuestions :(category?:string,difficulty?:string) => void;
 }
 
 export const Home: React.FC<Props> = ({ name, setName, fetchQuestions}) => {
-    const [category, setCategory] = useState("");
+    const [category, setCategory] = useState<any>("");
     const [difficulty, setDifficulty] = useState("");
     const [error, setError] = useState(false);
 
@@ -23,7 +23,7 @@ export const Home: React.FC<Props> = ({ name, setName, fetchQuestions}) => {
           return;
         } else {
           setError(false);
-        //   fetchQuestions(category, difficulty);
+          fetchQuestions(category, difficulty);
           navigate('/quiz');
         }
       };
@@ -38,7 +38,7 @@ export const Home: React.FC<Props> = ({ name, setName, fetchQuestions}) => {
             style={{ marginBottom: 25 }}
             label="Enter Your Name"
             variant="outlined"
-            // onChange={(e) => setName(e.target.value)}
+            onChange={(e) => setName(e.target.value)}
           />
           <TextField
             select
