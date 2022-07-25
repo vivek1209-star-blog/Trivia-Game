@@ -1,7 +1,10 @@
 import React from "react";
 
 interface child {
-    children : string | number;
+    children : | JSX.Element
+    | JSX.Element[]
+    | string
+    | string[];
 }
 
 const ErrorMessage:React.FC<child>= ({ children }) => {
